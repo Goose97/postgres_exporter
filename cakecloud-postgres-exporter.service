@@ -1,0 +1,12 @@
+[Unit]
+Description=Custom Postgresql exporter to use with Prometheus
+After=network.target
+
+[Service]
+Type=simple
+User=cc
+ExecStart=/usr/bin/make -C ~/postgres_exporter start
+Restart=on-failure
+# For system level services, use `multi-user.target`
+[Install]
+WantedBy=multi-user.target
