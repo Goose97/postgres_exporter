@@ -1,7 +1,7 @@
-instance_id = $(shell curl "http://10.1.9.49:4001/api/instance_id?name=cakecloud-db&project_name=${project}")
 hostname = $(shell hostname)
 DATA_SOURCE_NAME="postgresql://${database_user}:${database_password}@localhost:${port}/${database_name}"
 PG_EXPORTER_CONSTANT_LABELS="domain=${instance_id}_${hostname}"
+instance_id = $(shell curl "http://10.1.9.49:4001/api/instance_id?name=${hostname}&project_name=${project}")
 
 all: prepare_files save_env_vars start_service
 
